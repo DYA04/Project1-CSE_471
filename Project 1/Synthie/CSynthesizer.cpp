@@ -72,7 +72,11 @@ bool CSynthesizer::Generate(double* frame)
         CInstrument* instrument = NULL;
         if (note->Instrument() == L"ToneInstrument")
         {
-            instrument = new CToneInstrument();
+            //instrument = new CToneInstrument();
+
+            auto tone = new CToneInstrument();
+            tone->SetUseReverb(m_useReverb);  
+            instrument = tone;
         }
 
         // Configure the instrument object

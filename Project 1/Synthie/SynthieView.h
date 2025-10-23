@@ -43,6 +43,7 @@ protected:
 private:
 	bool m_fileoutput;
 	bool m_audiooutput;
+	bool m_useReverb = false;
 	void GenerateWriteFrame(short *p_frame);
 	bool OpenGenerateFile(CWaveOut &p_wave);
 	void GenerateEnd();
@@ -64,5 +65,6 @@ public:
 	afx_msg void OnGenerate1000hztone();
 	afx_msg void OnGenerateSynthesizer();
 	afx_msg void OnFileOpenscore();
+	afx_msg void OnEffectsReverb();
 };
 

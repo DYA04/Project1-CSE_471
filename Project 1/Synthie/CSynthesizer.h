@@ -36,6 +36,9 @@ public:
 
     void OpenScore(CString& filename);
 
+    void SetUseReverb(bool use) { m_useReverb = use; }
+    bool GetUseReverb() const { return m_useReverb; }
+
 private:
     int		m_channels;
     double	m_sampleRate;
@@ -48,6 +51,8 @@ private:
     int m_currentNote;          //!< The current note we are playing
     int m_measure;              //!< The current measure
     double m_beat;              //!< The current beat within the measure
+    bool m_useReverb = false;
+
 
 
     std::list<CInstrument*>  m_instruments;

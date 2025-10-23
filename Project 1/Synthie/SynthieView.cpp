@@ -46,6 +46,7 @@ BEGIN_MESSAGE_MAP(CSynthieView, CWnd)
 	ON_COMMAND(ID_GENERATE_1000HZTONE, &CSynthieView::OnGenerate1000hztone)
 	ON_COMMAND(ID_GENERATE_SYNTHESIZER, &CSynthieView::OnGenerateSynthesizer)
 	ON_COMMAND(ID_FILE_OPENSCORE, &CSynthieView::OnFileOpenscore)
+	ON_COMMAND(ID_EFFECTS_REVERB, &CSynthieView::OnEffectsReverb)
 END_MESSAGE_MAP()
 
 
@@ -259,4 +260,11 @@ void CSynthieView::OnFileOpenscore()
 		return;
 
 	m_synthesizer.OpenScore(dlg.GetPathName());
+}
+
+
+void CSynthieView::OnEffectsReverb()
+{
+	m_useReverb = !m_useReverb;
+	m_synthesizer.SetUseReverb(m_useReverb);
 }

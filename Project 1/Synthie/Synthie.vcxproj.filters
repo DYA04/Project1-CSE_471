@@ -75,6 +75,9 @@
     <ClCompile Include="CAR.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CReverb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="audio\DirSound.h">
@@ -144,6 +147,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CAR.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CReverb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

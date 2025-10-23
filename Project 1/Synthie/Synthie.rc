@@ -152,6 +152,10 @@ BEGIN
     BEGIN
         MENUITEM "&About Synthie...",           ID_APP_ABOUT
     END
+    POPUP "Effects"
+    BEGIN
+        MENUITEM "Reverb",                      ID_EFFECTS_REVERB
+    END
 END
 
 IDR_POPUP_EDIT MENU

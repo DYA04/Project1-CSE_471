@@ -12,7 +12,7 @@ void CToneInstrument::Start()
 {
     m_sinewave.SetSampleRate(GetSampleRate());
     m_sinewave.Start();
-    m_time = 0;
+    //m_time = 0;
 
     // Tell the AR object it gets its samples from 
     // the sine wave object.
@@ -20,6 +20,20 @@ void CToneInstrument::Start()
     m_ar.SetSampleRate(GetSampleRate());
     m_ar.SetDuration(m_duration);
     m_ar.Start();
+
+
+    //Reverb
+    if (m_useReverb)
+    {
+        m_reverb.SetSource(&m_ar);
+        m_reverb.SetSampleRate(GetSampleRate());
+        m_reverb.SetDelay(0.3);
+        m_reverb.SetFeedback(0.4);
+        m_reverb.SetWet(0.3);
+        m_reverb.Start();
+    }
+
+    m_time = 0;
 }
 
 
@@ -38,11 +52,32 @@ bool CToneInstrument::Generate()
     //// We return true until the time reaches the duration.
     //return m_time < m_duration;
 
-    bool valid = m_ar.Generate();
+   /* bool valid = m_ar.Generate();
     m_frame[0] = m_ar.Frame(0);
     m_frame[1] = m_ar.Frame(1);
     m_time += GetSamplePeriod();
-    return valid;
+    return valid;*/
+
+
+    bool valid = false;
+
+    if (m_useReverb)
+    {
+        valid = m_reverb.Generate();
+        m_frame[0] = m_reverb.Frame(0);
+        m_frame[1] = m_reverb.Frame(1);
+    }
+
+    else
+    {
+        valid = m_ar.Generate();
+        m_frame[0] = m_ar.Frame(0);
+        m_frame[1] = m_ar.Frame(1);
+        return valid;
+    }
+
+    m_time += GetSamplePeriod();
+    return valid && (m_time < m_duration);
 }
 
 void CToneInstrument::SetNote(CNote* note)
